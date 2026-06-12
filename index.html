@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kalyan Kuber - Premium App</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif;}
+
+html,body{
+    background:#2a0013;
+    color:#fff;
+    overflow-x:hidden;
+}
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    background-image:radial-gradient(#d6a700 1px,transparent 1px);
+    background-size:120px 120px;
+    opacity:.25;
+    pointer-events:none;
+    z-index:0;
+}
+
+body > *{position:relative;z-index:1;}
+
+.wrapper{
+    padding-bottom:130px;
+}
+
+.container{
+    width:520px;
+    max-width:95%;
+    margin:20px auto;
+    background:#420019;
+    border:1px solid #6d2840;
+    border-radius:18px;
+    overflow:hidden;
+}
+
+.topbar{
+    background:#b00063;
+    color:#ffd700;
+    text-align:center;
+    padding:12px;
+    font-weight:bold;
+}
+
+.logo{text-align:center;padding:40px 20px;}
+.logo-box img{width:125px;height:125px;object-fit:contain;}
+.logo-box{
+    width:140px;height:140px;margin:auto;border-radius:25px;
+    border:4px solid gold;
+    background:linear-gradient(135deg,#7a0b0b,#ff6b00);
+    display:flex;align-items:center;justify-content:center;
+    font-size:70px;font-weight:bold;color:gold;
+}
+.logo h1{color:gold;margin-top:20px;font-size:42px;}
+.logo p{color:#c7a65a;letter-spacing:8px;}
+
+.content{text-align:center;padding:20px;}
+.content h2{color:gold;margin-bottom:10px;}
+.content p{color:#c8b4b4;}
+
+.stats{
+    margin:20px;border:1px solid #6d2840;border-radius:16px;overflow:hidden;
+    display:grid;grid-template-columns:repeat(3,1fr);
+}
+.stat{border:1px solid #5b2337;text-align:center;padding:25px 10px;}
+.stat h3{color:gold;font-size:34px;}
+.stat p{color:#b99f9f;margin-top:8px;}
+
+.btn{
+    display:block;margin:15px 20px;text-decoration:none;text-align:center;
+    padding:18px;border-radius:18px;
+    background:linear-gradient(to right,#41c515,#d4d600);
+    color:#111;font-size:22px;font-weight:bold;
+}
+
+.section-title{margin:25px 20px 15px;color:gold;font-weight:bold;letter-spacing:2px;}
+
+.card{
+    margin:0 20px 20px;background:#4a001d;border:1px solid #6d2840;
+    border-radius:18px;padding:20px;
+}
+.card h3{color:gold;text-align:center;font-size:28px;}
+.card .time{text-align:center;color:#bbb;margin:10px 0 20px;}
+
+.result{
+    display:flex;justify-content:space-between;
+    background:#320014;border-radius:14px;padding:20px;
+}
+.result div{flex:1;text-align:center;}
+.result span{color:#d0a400;font-size:12px;}
+.result h4{font-size:38px;margin-top:8px;}
+.highlight{color:gold;}
+
+.action{display:flex;gap:12px;margin-top:15px;}
+.open{
+    flex:1;background:#42f000;color:#111;text-decoration:none;
+    text-align:center;padding:14px;border-radius:12px;font-weight:bold;
+}
+.details{
+    flex:1;border:1px solid #d0a400;color:gold;text-decoration:none;
+    text-align:center;padding:14px;border-radius:12px;
+}
+
+/* App card section — same dark theme */
+.app-section{
+    width:520px;max-width:95%;margin:0 auto 20px;
+    background:#420019;border:1px solid #6d2840;border-radius:18px;
+    padding:20px;text-align:center;
+}
+.app-section h1{font-size:24px;color:gold;margin-bottom:12px;}
+.app-section p{color:#d9c7c7;line-height:1.6;margin-bottom:20px;}
+
+.install-btn{
+    display:block;text-decoration:none;
+    background:linear-gradient(90deg,#26c6ff,#2196f3);
+    color:#fff;padding:16px;border-radius:12px;font-weight:bold;margin-bottom:25px;
+}
+
+.features-title{color:gold;font-size:22px;margin-bottom:15px;}
+.features{text-align:left;list-style:none;margin-bottom:25px;}
+.features li{padding:10px 0;border-bottom:1px solid #6d2840;color:#fff;}
+
+.download-btn{
+    display:block;text-decoration:none;
+    background:linear-gradient(90deg,#ffcc33,#ff9800);
+    color:#fff;padding:18px;border-radius:12px;font-weight:bold;font-size:18px;
+}
+.download-btn small{display:block;font-size:12px;margin-top:4px;}
+
+/* Fixed bottom bar */
+.trust-section{
+    text-align:center;
+    padding:30px 20px;
+    margin:0 20px 10px;
+}
+.trust-crown{font-size:42px;margin-bottom:12px;}
+.trust-tagline{
+    color:#c8b4b4;font-size:13px;letter-spacing:1px;margin-bottom:6px;
+}
+.trust-main{
+    color:#ff6fa3;font-size:15px;font-weight:bold;margin-bottom:4px;
+}
+.trust-sub{
+    color:#c8b4b4;font-size:13px;margin-bottom:20px;
+}
+.trust-badges{
+    display:flex;flex-wrap:wrap;justify-content:center;gap:12px;
+}
+.trust-badge{
+    border:1.5px solid gold;color:gold;
+    padding:10px 22px;border-radius:25px;
+    font-size:14px;font-weight:bold;letter-spacing:1px;
+    background:transparent;
+}
+
+.fixed-bar{
+    position:fixed;bottom:15px;left:50%;transform:translateX(-50%);
+    width:500px;max-width:90%;z-index:999;
+}
+.fixed-bar a{
+    display:block;text-decoration:none;text-align:center;
+    padding:20px;border-radius:20px;
+    background:linear-gradient(to right,#4bc413,#c8d300);
+    color:#111;font-size:24px;font-weight:bold;
+}
+
+@media(max-width:600px){
+    .stats{grid-template-columns:repeat(2,1fr);}
+    .action{flex-direction:column;}
+    .fixed-bar a{font-size:18px;}
+    .result h4{font-size:28px;}
+}
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+<div class="container">
+    <div class="topbar">⭐ PREMIUM APP PLATFORM</div>
+
+    <div class="logo">
+        <div class="logo-box"><img src="./logo-2.png" alt="Logo"></div>
+        <h1>KALYAN KUBER</h1>
+        <p>PREMIUM</p>
+    </div>
+
+    <div class="content">
+        <h2>भारत का सबसे शाही मटका प्लेटफॉर्म</h2>
+        <p>लाखों की कमाई, मिनटों में निकासी — जहाँ जीत की गारंटी है।</p>
+    </div>
+
+    <div class="stats">
+        <div class="stat"><h3>₹300</h3><p>MIN DEPOSIT</p></div>
+        <div class="stat"><h3>15M</h3><p>WITHDRAWAL</p></div>
+        <div class="stat"><h3>24/7</h3><p>SUPPORT</p></div>
+        <div class="stat"><h3>100%</h3><p>TRUSTED</p></div>
+        <div class="stat"><h3>250K+</h3><p>DOWNLOADS</p></div>
+        <div class="stat"><h3>24/7</h3><p>CUSTOMER SUPPORT</p></div>
+    </div>
+
+    <a href="https://kayan-kuber.com/app/kalyan-kuber.apk" class="btn">👑 DOWNLOAD APP - FREE</a>
+    <a href="https://kayan-kuber.com/app/kalyan-kuber.apk" class="btn">👑 DOWNLOAD APP - FREE</a>
+
+    <div class="section-title">📊 LIVE MARKET RESULTS</div>
+
+    <div class="card">
+        <h3>MADHUR NIGHT</h3><div class="time">Open: 10:30 AM | Close: 11:30 AM</div>
+        <div class="result">
+            <div><span>SCORE</span><h4>256</h4></div>
+            <div><span>RATING</span><h4 class="highlight">30</h4></div>
+            <div><span>INDEX</span><h4>569</h4></div>
+        </div>
+        <div class="action">
+            <a href="https://kayan-kuber.com/app/kalyan-kuber.apk" class="open">PLAY NOW</a>
+            <a href="https://kayan-kuber.com/app/kalyan-kuber.apk" class="details">VIEW CHART</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <h3>SUPREME NIGHT</h3><div class="time">Open: 9:30 AM | Close: 11:30 AM</div>
+        <div class="result">
+            <div><span>SCORE</span><h4>246</h4></div>
+            <div><span>RATING</span><h4 class="highlight">30</h4></div>
+            <div><span>INDEX</span><h4>569</h4></div>
+        </div>
+        <div class="action">
+            <a href="https://kayan-kuber.com/app/kalyan-kuber.apk" class="open">PLAY NOW</a>
+            <a href="https://kayan-kuber.com/app/kalyan-kuber.apk" class="details">VIEW CHART</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <h3>MILAN NIGHT</h3><div class="time">Open: 10:30 AM | Close: 12:30 AM</div>
+        <div class="result">
+            <div><span>SCORE</span><h4>253</h4></div>
+            <div><span>RATING</span><h4 class="highlight">30</h4></div>
+            <div><span>INDEX</span><h4>568</h4></div>
+        </div>
+        <div class="action">
+            <a href="https://kayan-kuber.com/app/kalyan-kuber.apk" class="open">PLAY NOW</a>
+            <a href="https://kayan-kuber.com/app/kalyan-kuber.apk" class="details">VIEW CHART</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <h3>KALYAN NIGHT</h3><div class="time">Open: 9:25 AM | Close: 10:25 AM</div>
+        <div class="result">
+            <div><span>SCORE</span><h4>250</h4></div>
+            <div><span>RATING</span><h4 class="highlight">30</h4></div>
+            <div><span>INDEX</span><h4>519</h4></div>
+        </div>
+        <div class="action">
+            <a href="https://kayan-kuber.com/app/kalyan-kuber.apk" class="open">PLAY NOW</a>
+            <a href="https://kayan-kuber.com/app/kalyan-kuber.apk" class="details">VIEW CHART</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <h3>RAJDHANI NIGHT</h3><div class="time">Open: 9:30 AM | Close: 11:30 AM</div>
+        <div class="result">
+            <div><span>SCORE</span><h4>254</h4></div>
+            <div><span>RATING</span><h4 class="highlight">30</h4></div>
+            <div><span>INDEX</span><h4>562</h4></div>
+        </div>
+        <div class="action">
+            <a href="https://kayan-kuber.com/app/kalyan-kuber.apk" class="open">PLAY NOW</a>
+            <a href="https://kayan-kuber.com/app/kalyan-kuber.apk" class="details">VIEW CHART</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <h3>MAIN BAZAR</h3><div class="time">Open: 9:30 AM | Close: 10:30 AM</div>
+        <div class="result">
+            <div><span>SCORE</span><h4>246</h4></div>
+            <div><span>RATING</span><h4 class="highlight">30</h4></div>
+            <div><span>INDEX</span><h4>598</h4></div>
+        </div>
+        <div class="action">
+            <a href="https://kayan-kuber.com/app/kalyan-kuber.apk" class="open">PLAY NOW</a>
+            <a href="https://kayan-kuber.com/app/kalyan-kuber.apk" class="details">VIEW CHART</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <h3>KARNATAKA DAY</h3><div class="time">Open: 10:00 AM | Close: 11:00 AM</div>
+        <div class="result">
+            <div><span>SCORE</span><h4>287</h4></div>
+            <div><span>RATING</span><h4 class="highlight">30</h4></div>
+            <div><span>INDEX</span><h4>590</h4></div>
+        </div>
+        <div class="action">
+            <a href="https://kayan-kuber.com/app/kalyan-kuber.apk" class="open">PLAY NOW</a>
+            <a href="https://kayan-kuber.com/app/kalyan-kuber.apk" class="details">VIEW CHART</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <h3>RATAN KHATRI</h3><div class="time">Open: 9:30 AM | Close: 10:30 AM</div>
+        <div class="result">
+            <div><span>SCORE</span><h4>221</h4></div>
+            <div><span>RATING</span><h4 class="highlight">30</h4></div>
+            <div><span>INDEX</span><h4>543</h4></div>
+        </div>
+        <div class="action">
+            <a href="https://kayan-kuber.com/app/kalyan-kuber.apk" class="open">PLAY NOW</a>
+            <a href="https://kayan-kuber.com/app/kalyan-kuber.apk" class="details">VIEW CHART</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <h3>KUBER MORNING</h3><div class="time">Open: 8:30 AM | Close: 9:30 AM</div>
+        <div class="result">
+            <div><span>SCORE</span><h4>236</h4></div>
+            <div><span>RATING</span><h4 class="highlight">30</h4></div>
+            <div><span>INDEX</span><h4>569</h4></div>
+        </div>
+        <div class="action">
+            <a href="https://kayan-kuber.com/app/kalyan-kuber.apk" class="open">PLAY NOW</a>
+            <a href="https://kayan-kuber.com/app/kalyan-kuber.apk" class="details">VIEW CHART</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <h3>AHMEDABAD CITY</h3><div class="time">Open: 11:30 AM | Close: 12:30 PM</div>
+        <div class="result">
+            <div><span>SCORE</span><h4>256</h4></div>
+            <div><span>RATING</span><h4 class="highlight">30</h4></div>
+            <div><span>INDEX</span><h4>519</h4></div>
+        </div>
+        <div class="action">
+            <a href="https://kayan-kuber.com/app/kalyan-kuber.apk" class="open">PLAY NOW</a>
+            <a href="https://kayan-kuber.com/app/kalyan-kuber.apk" class="details">VIEW CHART</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <h3>KUBER DAY</h3><div class="time">Open: 1:30 PM | Close: 2:30 PM</div>
+        <div class="result">
+            <div><span>SCORE</span><h4>256</h4></div>
+            <div><span>RATING</span><h4 class="highlight">30</h4></div>
+            <div><span>INDEX</span><h4>589</h4></div>
+        </div>
+        <div class="action">
+            <a href="https://kayan-kuber.com/app/kalyan-kuber.apk" class="open">PLAY NOW</a>
+            <a href="https://kayan-kuber.com/app/kalyan-kuber.apk" class="details">VIEW CHART</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <h3>KERALA CITY</h3><div class="time">Open: 4:30 PM | Close: 4:30 PM</div>
+        <div class="result">
+            <div><span>SCORE</span><h4>256</h4></div>
+            <div><span>RATING</span><h4 class="highlight">30</h4></div>
+            <div><span>INDEX</span><h4>599</h4></div>
+        </div>
+        <div class="action">
+            <a href="https://kayan-kuber.com/app/kalyan-kuber.apk" class="open">PLAY NOW</a>
+            <a href="https://kayan-kuber.com/app/kalyan-kuber.apk" class="details">VIEW CHART</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <h3>KUBER NIGHT</h3><div class="time">Open: 7:30 PM | Close: 8:30 PM</div>
+        <div class="result">
+            <div><span>SCORE</span><h4>239</h4></div>
+            <div><span>RATING</span><h4 class="highlight">30</h4></div>
+            <div><span>INDEX</span><h4>669</h4></div>
+        </div>
+        <div class="action">
+            <a href="https://kayan-kuber.com/app/kalyan-kuber.apk" class="open">PLAY NOW</a>
+            <a href="https://kayan-kuber.com/app/kalyan-kuber.apk" class="details">VIEW CHART</a>
+        </div>
+    </div>
+
+</div><!-- end .container -->
+
+<!-- App info section — same dark theme -->
+<div class="app-section">
+    <h1>India's No.1 Online Kalyan Matka Application 🇮🇳</h1>
+    <p>India का सबसे बड़ा, सबसे भरोसेमंद और सबसे ज्यादा खेले जाने वाला Kalyan Matka App! 🇮🇳</p>
+    <a href="https://kayan-kuber.com/app/kalyan-kuber.apk" class="install-btn">📲 Install App Now</a>
+    <h2 class="features-title">🔥 KALYAN KUBER Exclusive Features 🔥</h2>
+    <ul class="features">
+        <li>☑️ Minimum Deposit - ₹300</li>
+        <li>💞 Minimum Withdrawal - ₹1000</li>
+        <li>🕒 24/7 Instant Withdrawal</li>
+        <li>📶 All Market Games Available</li>
+        <li>🔐 100% Safe & Secure Platform</li>
+        <li>🤖 Auto Deposit & Auto Withdrawal</li>
+        <li>📡 Live Matka Updates</li>
+        <li>📊 Real-Time Results</li>
+    </ul>
+    <a href="https://kayan-kuber.com/app/kalyan-kuber.apk" class="download-btn">
+        📱 DOWNLOAD APP NOW
+        <small>KALYAN KUBER OFFICIAL APP</small>
+    </a>
+</div>
+
+<!-- Trust Badge Section -->
+<div class="app-section">
+    <div class="trust-crown">👑</div>
+    <div class="trust-tagline">हार-जीत भरोसा न सच —</div>
+    <div class="trust-main">Kalyan Kuber के साथ जुड़ें, ज़िंदगी पर वो भरोसा पाएं!</div>
+    <div class="trust-sub">आपका विश्वास, हमारी सबसे बड़ी ताकत ♥</div>
+    <div class="trust-badges">
+        <span class="trust-badge">✦ TRUSTED</span>
+        <span class="trust-badge">✦ ROYAL</span>
+        <span class="trust-badge">✦ INSTANT PAY</span>
+    </div>
+</div>
+
+</div><!-- end .wrapper -->
+
+<!-- Fixed bottom download bar -->
+<div class="fixed-bar">
+    <a href="https://kayan-kuber.com/app/kalyan-kuber.apk" download>👑 DOWNLOAD APP - FREE</a>
+</div>
+
+</body>
+</html>
